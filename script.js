@@ -6,7 +6,9 @@ document.getElementById('summarizeBtn').addEventListener('click', async () => {
     alert('Please enter some text to summarize.');
     return;
   }
-  
+  const cors = require('cors');
+app.use(cors({ origin: 'https://horus911.github.io' }));
+
   document.getElementById('summary').textContent = 'Loading...';
 
   try {
