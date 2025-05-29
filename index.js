@@ -4,11 +4,9 @@ const bodyParser = require('body-parser');
 const { Configuration, OpenAIApi } = require('openai');
 require('dotenv').config();
 
-const app = express(); // ⬅️ Cette ligne doit être AVANT tout app.use() ou app.post()
-
+const app = express();
 const port = process.env.PORT || 3000;
 
-// CORS uniquement pour GitHub Pages
 app.use(cors({
   origin: 'https://horus911.github.io'
 }));
@@ -22,11 +20,9 @@ const openai = new OpenAIApi(configuration);
 
 app.post('/api/summarize', async (req, res) => {
   const { text } = req.body;
-
   if (!text) {
     return res.status(400).json({ error: 'No text provided' });
   }
-
   try {
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
@@ -35,7 +31,6 @@ app.post('/api/summarize', async (req, res) => {
         content: `Please summarize the following news article in one sentence:\n\n${text}`,
       }],
     });
-
     const summary = completion.data.choices[0].message.content.trim();
     res.json({ summary });
   } catch (error) {
@@ -47,4 +42,3 @@ app.post('/api/summarize', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
