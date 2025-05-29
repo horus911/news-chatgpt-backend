@@ -1,4 +1,5 @@
 require('dotenv').config();
+console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'FOUND' : 'NOT FOUND');
 
 const express = require("express");
 const cors = require("cors");
