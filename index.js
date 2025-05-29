@@ -1,8 +1,10 @@
-const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const { Configuration, OpenAIApi } = require('openai');
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+// Ajoute ceci avant les routes
+app.use(cors({
+  origin: 'https://horus911.github.io'
+}));
+
+git add index.js
+git commit -m "Fix CORS for GitHub Pages"
+git push
